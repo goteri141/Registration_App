@@ -44,14 +44,23 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
+  final _authenticate = AuthService();
 
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
   
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text('Registration Page')),
       body: Center(
-        child: Column(
+        child: Form(
+          key: _formKey,
+          child: Column(
           mainAxisAlignment: .center,
           crossAxisAlignment: .center,
           children: [
@@ -79,20 +88,32 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
 
             const SizedBox(height: 30),
 
-            ElevatedButton(
-              onPressed: () {
 
-              Navigator.pushReplacement(
-                context,
-                MaterialPageRoute(builder: (_) => ProfileScreen())
-              );
-              },
+            // Register users creating an acoount
+            ElevatedButton(
+              onPressed: () async{
+                if (_formKey.currentState!.validate()) {
+                    await _authenticate.register(
+                      _emailController.text,
+                      _passwordController.text
+                    );
+
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (_) => ProfileScreen())
+                  );}},
               child: Text('Register')),
             
             const SizedBox(height: 30),
             
+            // Login users that already have an acccount
             ElevatedButton(
-              onPressed: () {
+              onPressed: () async{
+                if (_formKey.currentState!.validate()) {
+                    await _authenticate.signIn(
+                      _emailController.text,
+                      _passwordController.text
+                    );}
                 Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (_) => ProfileScreen())
@@ -102,6 +123,6 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
           ],
         ),
       ),
-    );
+    ));
   }
 }
