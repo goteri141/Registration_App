@@ -10,6 +10,8 @@ class ProfileScreen extends StatefulWidget{
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  final _authenticate = AuthService();
+  final _changePasswordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -20,6 +22,33 @@ class _ProfileScreenState extends State<ProfileScreen> {
           mainAxisAlignment: .center,
           crossAxisAlignment: .center,
           children:[
+            // Display the user's email
+            Text('User Email: ${_authenticate.currentUser?.email}'),
+
+            const SizedBox(height: 30),
+
+            // Change User's password
+            TextFormField(
+              controller: _changePasswordController,
+              decoration: const InputDecoration(labelText: 'New Password'),
+              obscureText: true,
+              validator: (value) {
+                if (value == null || value.length < 6) return 'Password must be at least 6 characters';
+                return null;
+              }
+            ),
+
+            const SizedBox(height: 30),
+
+            // Update Password Button
+            ElevatedButton(
+              onPressed: () {
+              },
+              child: Text('Update Password')),
+
+            const SizedBox(height: 60),
+
+            // Sign Out Button
             ElevatedButton(
               onPressed: () {
                 Navigator.pushReplacement(
