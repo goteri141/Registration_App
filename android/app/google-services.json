@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "84388751721",
+    "project_id": "registration-app-goteri141",
+    "storage_bucket": "registration-app-goteri141.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84388751721:android:309982c5ab4118e0d935f8",
+        "android_client_info": {
+          "package_name": "com.example.registration_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBI3TTmlwD9a6bTDzSSlG3A5hgDR9IqN7M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
