@@ -70,7 +70,16 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                 if (value == null || value.length < 6) return 'Password must be at least 6 characters';
                 return null;
               }
-            )
+            ),
+
+            ElevatedButton(
+              onPressed: () {
+              },
+              child: Text('Register')),
+            
+            ElevatedButton(
+              onPressed: () {},
+              child: Text('Sign In'))
           ],
         ),
       ),
