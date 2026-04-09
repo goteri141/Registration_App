@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'proflie_screen.dart';
 
 class AuthService {
     final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -48,9 +49,11 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(title: Text('Registration Page')),
       body: Center(
         child: Column(
           mainAxisAlignment: .center,
+          crossAxisAlignment: .center,
           children: [
             TextFormField(
               controller: _emailController,
@@ -62,6 +65,8 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
               }
             ),
 
+            const SizedBox(height: 30),
+
             TextFormField(
               controller: _passwordController,
               decoration: const InputDecoration(labelText: 'Password'),
@@ -72,13 +77,27 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
               }
             ),
 
+            const SizedBox(height: 30),
+
             ElevatedButton(
               onPressed: () {
+
+              Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => ProfileScreen())
+              );
               },
               child: Text('Register')),
             
+            const SizedBox(height: 30),
+            
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushReplacement(
+                context,
+                MaterialPageRoute(builder: (_) => ProfileScreen())
+              );
+              },
               child: Text('Sign In'))
           ],
         ),
